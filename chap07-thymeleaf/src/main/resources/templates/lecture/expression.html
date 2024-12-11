@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+    <h1>expression</h1>
+    <h2>표현식의 종류 - 변수표현식, 선택변수 표현식, 메시지 표현식, 링크 표현식, 조각 표현식, 인라인표현식</h2>
+    <hr>
+    <h3>Expression - 변수 표현식 ${...}</h3>
+    <p th:text="${param.title}"></p>
+    <p th:text="${param.no[0]}"></p>
+    <p th:text="${param.no[1]}"></p>
+
+    <h3>Expression - 메세지 표현식 #{...}</h3>
+    <p th:text="#{value}"></p>
+
+    <h3>Expression - 링크 표현식 @{...}</h3>
+    <a th:href="@{/lecture/etc}">메인으로</a>
+
+    <h3>Expression - 선택 변수 표현식 *{...}</h3>
+    <p th:text="${member.name}"></p>
+    <p th:object="${member}" th:text="*{age}"></p>
+    <div th:object="${member}">
+        <p th:text="*{name}"></p>
+        <p th:text="*{age}"></p>
+        <p th:text="*{address}"></p>
+        <p th:text="*{gender}"></p>
+    </div>
+    <h3>th:block</h3>
+    <th:block th:object="${member}">
+        <p th:text="*{name}"></p>
+        <p th:text="*{age}"></p>
+        <p th:text="*{address}"></p>
+        <p th:text="*{gender}"></p>
+    </th:block>
+    <h3>HTML출력 th:text th:utext th:value</h3>
+    <ul>
+        <li th:text="${Hello}"></li>
+        <li th:utext="${Hello}"></li>
+        <li><input type="text" th:value="태그"></li>
+    </ul>
+    <hr>
+    <h3 th:inline="none">Expression - 인라인 표현식 [[...]], [(...)]</h3>
+    <p th:inline="none">
+        변수표현식의 값을 html에 직접 사용하기 위해서 th:text와 동일한 기능인 [[...]]
+        th:utext와 동일한 기능인 [(...)]을 사용함
+    </p>
+
+    <ul>
+        <li>[[${Hello}]]</li>
+        <li>[(${Hello})]</li>
+        <li th:inline="none">[[${Hello}]]</li>
+        <li th:inline="none">[(${Hello})]</li>
+
+    </ul>
+    <script>
+        window.onload = function (){
+            const hi = `[[${Hello}]]`;
+            alert(hi);
+        }
+    </script>
+
+    <h3>리터럴 치환 ||</h3>
+    <th:block th:object="${member}">
+        <p th:text="|이름 = *{name}|"></p>
+        <p th:text="|나이 = *{age}|"></p>
+        <p th:text="|주소 = *{address}|"></p>
+        <p th:text="|성별 = *{gender}|"></p>
+    </th:block>
+
+</body>
+</html>

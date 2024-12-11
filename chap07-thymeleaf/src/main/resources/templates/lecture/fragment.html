@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+    <header th:replace="~{/common/header :: headerFragment}">
+        <h1>Header area</h1>
+
+    </header>
+    <aside th:replace="~{common/aside :: asideFragment(${test}, ${test2})}">
+
+    </aside>
+    <main>
+        <aticle>
+            <section>
+                <h1>메인영역</h1>
+            </section>
+        </aticle>
+    </main>
+    <footer th:insert="~{/common/footer :: footerFragment}">
+        <h2>Footer area</h2>
+    </footer>
+
+</body>
+</html>

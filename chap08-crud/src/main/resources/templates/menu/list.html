@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script language="javascript">
+        function showPopup(MenuDTO) {
+            const popup = window.open("popup", "Menu infomaition", "width=400, height=300, left=500, top=500");
+            const instance =
+        }
+    </script>
+</head>
+<body>
+    <script>
+        const message = `[[${successMessage}]]`;
+        if(message){
+            alert(message)
+        }
+    </script>
+    <table border="1">
+        <tr>
+            <th>메뉴번호</th>
+            <th>메뉴이름</th>
+        </tr>
+        <tr th:each="menu : ${menuList}">
+            <td th:text="${menu.code}"/>
+            <td>
+                <!--<a href="#none" th:onclick="showPopup()" th:text="${menu.name}">이름</a>-->
+                <a href="#none" th:onclick="showPopup(${menuList})" th:text="${menu.name}">이름</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

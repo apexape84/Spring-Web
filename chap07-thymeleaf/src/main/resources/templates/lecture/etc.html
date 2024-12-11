@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+    <h1>기타문법 정리</h1>
+    <h3>th:with</h3>
+    <th:block th:with="start=${searchCriteria.startPage}, last=${searchCriteria.endPage}">
+        <th:block th:each="p:${#numbers.sequence(start,last)}">
+            <th:block th:if="${searchCriteria.currentPage eq p}">
+                <button th:text="${p}" disabled></button>
+            </th:block>
+            <th:block th:if="${searchCriteria.currentPage ne p}">
+                <button th:text="${p}"></button>
+            </th:block>
+        </th:block>
+    </th:block>
+    <hr>
+
+    <h3>List</h3>
+    <ul>
+        <li th:text="${memberList[1].name}"></li>
+        <li th:text="${memberList[1]['age']}"></li>
+        <li th:text="${memberList[1].getGender()}"></li>
+        <li th:text="${memberList.get(1).getGender()}"></li>
+        <li th:text="${memberList.get(1).address}"></li>
+    </ul>
+    <hr>
+    <h3>Map</h3>
+    <ul>
+        <li th:text="${memberMap['1'].name}"></li>
+        <li th:text="${memberMap['1']['age']}"></li>
+        <li th:text="${memberMap['1'].getGender()}"></li>
+    </ul>
+    <hr>
+
+    <h3>Spring Security</h3>
+    <th:block sec:authorize="isAuthenticated()">로그인 했음</th:block>
+    <th:block sec:authorize="isAuthenticated() == false">로그인 안함</th:block>
+</body>
+</html>

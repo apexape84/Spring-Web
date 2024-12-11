@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+    <h1>제어문</h1>
+    <h2>th:if, th:unless</h2>
+    <p>
+        th:if는 변수표현식 활용, 조건문 사용
+        th:unless는 if와 같지만 false일때
+    </p>
+    <p th:if="${num>0}" th:text="|${num}은0 보다 크다|"></p>
+    <p th:if="${num<0}">0 보다 작다</p>
+    <p th:unless="${num>0}">0 보다 작다</p>
+    <p th:unless="${num<0}">0 보다 크다</p><hr>
+
+    <th:block th:if="${str=='apple'}">
+        <p> I like apple!!</p>
+    </th:block>
+    <th:block th:if="${str=='banana'}">
+        <p> I like banana!!</p>
+    </th:block><hr>
+
+    <p th:if="${num>0 or num <=10}" th:text="|${num}은 1부터 10 사이의 양수 입니다|"></p>
+
+    <h2>th:swich, th:case</h2>
+    <th:block th:switch="${str}">
+        <span th:case="apple"> 사과 </span>
+        <span th:case="banana"> 바나나 </span>
+    </th:block>
+
+    <h2>th:each</h2>
+    <p>가장 많이 사용 하고 제일 중요</p>
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>성별</th>
+            <th>주소</th>
+        </tr>
+        <tr th:each="member : ${memberList}">
+            <block th:object="${member}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{age}"></td>
+                <td th:text="*{gender}"></td>
+                <td th:text="*{address}"></td>
+            </block>
+        </tr>
+    </table>
+    <hr>
+
+    <h2>th:each 는 두번째 매개변수 stat를 추가해서 반복상태 확인 가능</h2>
+    <p>index, count, current, even, odd, first, last</p>
+
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>성별</th>
+            <th>주소</th>
+            <th>index</th>
+            <th>count</th>
+            <th>size</th>
+            <th>current</th>
+            <th>even</th>
+            <th>odd</th>
+            <th>first</th>
+            <th>last</th>
+        </tr>
+        <tr th:each="member, staaaa : ${memberList}">
+            <block th:object="${member}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{age}"></td>
+                <td th:text="*{gender}"></td>
+                <td th:text="*{address}"></td>
+            </block>
+            <block th:object="${staaaa}">
+                <td th:text="*{index}"></td>
+                <td th:text="*{count}"></td>
+                <td th:text="*{size}"></td>
+                <td th:text="*{current}"></td>
+                <td th:text="*{even}"></td>
+                <td th:text="*{odd}"></td>
+                <td th:text="*{first}"></td>
+                <td th:text="*{last}"></td>
+            </block>
+        </tr>
+    </table>
+
+
+</body>
+</html>
